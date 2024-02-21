@@ -120,6 +120,7 @@ class Mesh:
 
         useless_simplices = trg.find_simplex(self.useless_nodes)
         self.mesh = np.delete(trg.simplices, [simplex for simplex in list(useless_simplices)],0)
+        self.delaunay = Delaunay(self.mesh)
         return self.mesh
 
 
@@ -171,3 +172,8 @@ class Mesh:
 
     def export(self):
         pass
+
+
+class Material:
+    def __init__(self):
+        self.D = []
