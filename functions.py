@@ -26,7 +26,7 @@ def L(mesh,element,index,x,y):
     return 1/2/area(i,j,k)*(a+b*x+c*y)
 
 
-def B():
+def B(mesh, element):
     b = np.matrix([[-1,1,0],[-1,0,1]])
     return b
 
@@ -35,8 +35,8 @@ def J(mesh,element):
     j = np.array(mesh.nodes[int(mesh.delaunay.points[element][1])])
     k = np.array(mesh.nodes[int(mesh.delaunay.points[element][2])])
     xy = np.array([[i[0],i[1]],[j[0],j[1]],[k[0],k[1]]])
-    return np.matmul(B(),xy)
+    return np.matrix(np.matmul(B(mesh,element),xy))
 
 
 def J_inv(mesh,element):
-    return linalg.inv(J(mesh,element))
+    return np.linalg.inv(J(mesh,element))
