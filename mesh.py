@@ -3,6 +3,13 @@ from scipy.spatial import Delaunay
 import matplotlib.pyplot as plt
 import math
 
+class Node:
+    def __init__(self):
+        self.region = 0
+        self.temperature = 0
+        self.x = None
+        self.y = None
+
 class Mesh:
     def __init__(self, width, height, wall_thickness ,insul_thickness,cladding_thickness):
         self.width = width
@@ -15,6 +22,9 @@ class Mesh:
         self.R = self.cladding_thickness + self.insul_thickness + 0.1*self.width
         self.r = self.insul_thickness + 0.1*self.width
         self.nodes = []
+
+        self.T_in = 25 #indoors temperature
+        self.T_out = 10
 
 
         #1.1. Creating Nodes
@@ -160,15 +170,14 @@ class Mesh:
                     self.nodes.remove(node)
 
 
-
-
-
-
     def set_precision(self, longitudinal ,transversal,insul,cladding):
         self.n1_1 = longitudinal
         self.n1_2 = cladding
         self.n2_2 = insul
         self.n2_3 = transversal
+
+    def set_temperature(self):
+        pass
 
     def export(self):
         pass

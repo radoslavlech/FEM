@@ -15,8 +15,11 @@ def area(node1,node2,node3):
     a = np.matrix([[1, node1[0],node1[1]],[1, node2[0],node2[1]],[1, node3[0],node3[1]]])
     return 0.5*np.linalg.det(a)
 
+def node(mesh, element, index):
+    return np.array(mesh.nodes[int(mesh.delaunay.points[element][index])])
+
 def L(mesh,element,index,x,y):
-    i = np.array(mesh.nodes[int(mesh.delaunay.points[element][index])])
+    i = np.array(mesh.nodes[int(mesh.delaunay.points[element][index])])       #coordinates of the first node
     j = np.array(mesh.nodes[int(mesh.delaunay.points[element][(index+1)%3])])
     k = np.array(mesh.nodes[int(mesh.delaunay.points[element][(index+2)%3])])
 
@@ -25,6 +28,8 @@ def L(mesh,element,index,x,y):
     c = k[0]-j[0]
     return 1/2/area(i,j,k)*(a+b*x+c*y)
 
+def T(mesh, element, x,y):
+    return
 
 def B(mesh, element):
     b = np.matrix([[-1,1,0],[-1,0,1]])
