@@ -15,18 +15,9 @@ D = np.matrix('1.4 0; 0 1.4')
 r,s = symbols('r s')
 h=1
 
-T = np.zeros((len(Mesh1.mesh),1))  #Temperature at each ELEMENT
+
 x,y = sp.symbols('x y')
 
-print(node(Mesh1,1,0))
-
-#print nodes pf the first element:
-n1 = np.array(Mesh1.nodes[int(Mesh1.delaunay.points[1][0])])
-n2 = np.array(Mesh1.nodes[int(Mesh1.delaunay.points[1][1])])
-n3 = np.array(Mesh1.nodes[int(Mesh1.delaunay.points[1][2])])
-print(L(Mesh1,1,0,n1[0],n1[1]))
-#L1 at node 1 is 1, which means that it works!!
-exit()
 
 for element in range(len(Mesh1.mesh)):
     L_vec = np.array([L(Mesh1,element,0,x,y),L(Mesh1,element,1,x,y),L(Mesh1,element,2,x,y)])
